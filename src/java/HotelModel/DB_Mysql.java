@@ -135,7 +135,7 @@ public class DB_Mysql implements DB_Accessor {
     }
 
     @Override
-    public int updateRecord(String table, String primaryKey, Long pk, String colName, Object value){      
+    public int updateRecord(String table, String primaryKey, int pk, String colName, Object value){      
         PreparedStatement pstmt = null;
         int updates = 0;
         try{
@@ -153,7 +153,7 @@ public class DB_Mysql implements DB_Accessor {
     
     
     @Override
-    public int deleteRecord(String table, String primaryKey, Long pk){
+    public int deleteRecord(String table, String primaryKey, int pk){
         
         PreparedStatement pstmt = null;
         int updates = 0;

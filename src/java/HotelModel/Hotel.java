@@ -7,7 +7,7 @@ import java.util.Objects;
  * @author Daniel
  */
 public class Hotel {
-    private Long hotelId;
+    private int hotelId;
     private String hotelName;
     private String streetAddress;
     private String city;
@@ -18,7 +18,7 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(Long hotelId, String hotelName, String streetAddress, String city, String state, String zip, String notes) {
+    public Hotel(int hotelId, String hotelName, String streetAddress, String city, String state, String zip, String notes) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.streetAddress = streetAddress;
@@ -30,11 +30,11 @@ public class Hotel {
 
     
     
-    public Long getHotelId() {
+    public int getHotelId() {
         return hotelId;
     }
 
-    public void setHotelId(Long hotelId) {
+    public void setHotelId(int hotelId) {
         this.hotelId = hotelId;
     }
 

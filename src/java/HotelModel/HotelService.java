@@ -17,23 +17,25 @@ public class HotelService {
         dao = new HotelDAO();
     }
     
-    public void updateHotelRecord(){
-        dao.updateHotelRecord(new Long(123), "state", "NY");
+    public void updateHotelRecord(int pk, String field, String value){
+        dao.updateHotelRecord(pk, "state", "NY");
     }
     
     
-    public void deleteHotelRecord(){
-        dao.deleteHotelRecord(new Long(125));
+    public void deleteHotelRecord(int pk){
+        dao.deleteHotelRecord(pk);
     }
     
-    public void findAllHotels(){
-        List<Hotel>hotels = dao.findAllHotels();
-        for(Hotel h : hotels){
-            System.out.println(h);
-        }
+    public List<Hotel> findAllHotels(){
+       // List<Hotel>hotels = dao.findAllHotels();
+//        for(Hotel h : hotels){
+//            System.out.println(h);
+//        }
+        return dao.findAllHotels();
     }
     
-    public void insertHotelRecord(){
+    public void insertHotelRecord(String name, String address, String city, String state,
+            String zip, String notes){
         List<String> colNames = new ArrayList<>();
         List values = new ArrayList();
         colNames.add("hotel_name");
@@ -43,19 +45,19 @@ public class HotelService {
         colNames.add("postal_code");
         colNames.add("notes");
         
-        values.add("Hilton");
-        values.add("654 Main St");
-        values.add("Waukesha");
-        values.add("WI");
-        values.add("53025");
-        values.add("Wisconsin Branch");
+        values.add(name);
+        values.add(address);
+        values.add(city);
+        values.add(state);
+        values.add(zip);
+        values.add(notes);
                 
         dao.insertHotelRecord(colNames, values);
     }
     
-    public static void main(String[] args) {
-        HotelService h = new HotelService();
-        
-        h.findAllHotels();
-    }
+//    public static void main(String[] args) {
+//        HotelService h = new HotelService();
+//        
+//        System.out.println(h.findAllHotels());
+//    }
 }

@@ -21,8 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "HotelController", urlPatterns = {"/hc"})
 public class HotelController extends HttpServlet {
-    private static final String RESULT_PAGE = "/index.jsp";
-   private static final String ACTION_RECT = "rect";
+   private static final String RESULT_PAGE = "index.jsp";
    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,19 +35,75 @@ public class HotelController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
 
-            HotelDAOInterface h = new HotelDAO();
-            List<Hotel> hotelList = h.findAllHotels();
+            HotelService hs = new HotelService();
+            List<Hotel> hotelInfo = hs.findAllHotels();
+            String typeString = request.getParameter("type");
             
-           request.setAttribute("records", hotelList);
-        
-            RequestDispatcher view = request.getRequestDispatcher(RESULT_PAGE);
+            if(typeString != null && typeString.equals("view")){
+                Hotel h = hotelInfo.get(Integer.parseInt(request.getParameter("arraySpace")));
+                
+                request.setAttribute("hotelName", h.getHotelName());
+                request.setAttribute("address", h.getStreetAddress());
+                request.setAttribute("city", h.getCity());
+                request.setAttribute("state", h.getState());
+                request.setAttribute("postal", h.getZip());
+                
+                request.setAttribute("notes", h.getNotes());
+            } else if(typeString != null && typeString.equals("delete")){
+               
+                Hotel h = hotelInfo.get(Integer.parseInt(request.getParameter("arraySpace")));                
+                hs.deleteHotelRecord(h.getHotelId());
+                
+            } else if(typeString != null && typeString.equals("create")){
+                
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String city = request.getParameter("city");
+                String state = request.getParameter("state");
+                String postal = request.getParameter("postal");
+                String notes = request.getParameter("notes");
+                hs.insertHotelRecord(name, address, city, state, postal, notes);
+            
+            } else if(typeString != null && typeString.equals("update")){
+                int id = Integer.parseInt(request.getParameter("hotel_id"));
+                
+                String name = request.getParameter("name");
+                String address = request.getParameter("address");
+                String city = request.getParameter("city");
+                String state = request.getParameter("state");
+                String postal = request.getParameter("postal");
+                String notes = request.getParameter("notes");
+                
+                hs.updateHotelRecord(id, "hotel_name", name);
+                hs.updateHotelRecord(id, "street_address", address);
+                hs.updateHotelRecord(id, "city", city);
+                hs.updateHotelRecord(id, "state", state);
+                hs.updateHotelRecord(id, "postal_code", postal);
+                hs.updateHotelRecord(id, "notes", notes);
+                hotelInfo = hs.findAllHotels();
+               
+                Hotel h = hotelInfo.get(Integer.parseInt(request.getParameter("arraySpace")));
+                
+                request.setAttribute("hotelName", h.getHotelName());
+                request.setAttribute("address", h.getStreetAddress());
+                request.setAttribute("city", h.getCity());
+                request.setAttribute("state", h.getState());
+                request.setAttribute("postal", h.getZip());
+                request.setAttribute("notes", h.getNotes());
+            }
+            
+            hotelInfo = hs.findAllHotels();
+            
+            request.setAttribute("hotels", hotelInfo);
+            
+            RequestDispatcher view =
+            request.getRequestDispatcher(RESULT_PAGE);
             view.forward(request, response);
         }
 
         
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

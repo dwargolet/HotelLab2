@@ -68,7 +68,7 @@ public class HotelDAO implements HotelDAOInterface{
         Hotel h = null;
         for(Map m : records){
             h = new Hotel();
-            h.setHotelId(new Long(m.get("hotel_id").toString()));
+            h.setHotelId(Integer.valueOf(m.get("hotel_id").toString()));
             h.setHotelName(m.get("hotel_name").toString());
             h.setStreetAddress(m.get("street_address").toString());
             h.setCity(m.get("city").toString());
@@ -96,7 +96,7 @@ public class HotelDAO implements HotelDAOInterface{
     
     
     @Override
-    public int deleteHotelRecord(Long pk){
+    public int deleteHotelRecord(int pk){
         db.openConnection(driver, url, username, password);
         int updates = db.deleteRecord("Hotel", "hotel_id", pk);
         
@@ -104,7 +104,7 @@ public class HotelDAO implements HotelDAOInterface{
     }
 
     @Override
-    public int updateHotelRecord(Long pk, String colNames, String values){
+    public int updateHotelRecord(int pk, String colNames, String values){
         
         int updates;
         db.openConnection(driver, url, username, password);
@@ -125,17 +125,17 @@ public class HotelDAO implements HotelDAOInterface{
     }
     
     
-    public static void main(String[] args) throws SQLException {
-        HotelDAO dao = new HotelDAO();
-
-        
-        List<Hotel> records = dao.findAllHotels();
-        
-        System.out.println("Found Hotel records...\n");
-        System.out.println(records);
-        
-       
-    }
+//    public static void main(String[] args) throws SQLException {
+//        HotelDAO dao = new HotelDAO();
+//
+//        
+//        List<Hotel> records = dao.findAllHotels();
+//        
+//        System.out.println("Found Hotel records...\n");
+//        System.out.println(records);
+//        
+//       
+//    }
     
     
 }

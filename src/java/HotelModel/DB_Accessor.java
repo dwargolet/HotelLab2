@@ -17,8 +17,8 @@ public abstract List<Map<String, Object>> getRecords(String table);
 
 public abstract int insertRecord(String table, List<String> colNames, List values);
 
-public abstract int updateRecord(String table, String primaryKey, Long pk, String colName, Object value);
+public abstract int updateRecord(String table, String primaryKey, int pk, String colName, Object value);
 
-public abstract int deleteRecord(String table, String primaryKey, Long pk);
+public abstract int deleteRecord(String table, String primaryKey, int pk);
     
 }
