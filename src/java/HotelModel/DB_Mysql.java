@@ -38,7 +38,7 @@ public class DB_Mysql implements DB_Accessor {
     }
 
 //    @Override
-//    public Map getRecordByID(String table, String primaryKey, Object keyValue) throws SQLException, Exception {
+//    public Map getRecordByID(String table, String primaryKey, Object value){
 //        
 //        Statement stmt = null;
 //	ResultSet rs = null;
@@ -46,14 +46,14 @@ public class DB_Mysql implements DB_Accessor {
 //	final Map record=new HashMap();
 //
 //
-//	try {
+//	
 //            stmt = conn.createStatement();
 //            String sql2;
 //
-//            if(keyValue instanceof String){
-//		sql2 = "= '" + keyValue + "'";
+//            if(value instanceof String){
+//		sql2 = "= '" + value + "'";
 //            }else{
-//		sql2 = "=" + keyValue;
+//		sql2 = "=" + value;
 //            }
 //
 //	final String sql="SELECT * FROM " + table + " WHERE " + primaryKey + sql2;
@@ -62,24 +62,19 @@ public class DB_Mysql implements DB_Accessor {
 //	metaData.getColumnCount();
 //	final int fields=metaData.getColumnCount();
 //
-//
-//			if(rs.next() ) {
-//				for( int i=1; i <= fields; i++ ) {
-//					record.put( metaData.getColumnName(i), rs.getObject(i) );
-//				}
-//			}
-//
-//		} catch (SQLException sqle) {
-//			throw sqle;
-//		} catch (Exception e) {
-//			throw e;
-//		} 
+//		if(rs.next() ) {
+//                    for( int i=1; i <= fields; i++ ) {
+//			record.put( metaData.getColumnName(i), rs.getObject(i) );
+//                    }
+//		}
+//		
 //                closeConnection();
 //		return record; 
 //    }
     
     @Override
-    public List<Map<String, Object>> getRecords(String table){
+    public List<Map<String, Object>> getRecords(String table){       
+              
         Statement stmt = null;
         ResultSet rs = null;
         ResultSetMetaData rsmd = null;

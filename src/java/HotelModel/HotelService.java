@@ -18,7 +18,7 @@ public class HotelService {
     }
     
     public void updateHotelRecord(int pk, String field, String value){
-        dao.updateHotelRecord(pk, "state", "NY");
+        dao.updateHotelRecord(pk, field, value);
     }
     
     
@@ -57,6 +57,8 @@ public class HotelService {
     
 //    public static void main(String[] args) {
 //        HotelService h = new HotelService();
+//        
+//        h.insertHotelRecord("Wutang", "ODB St", "Shaolin", "NY", "12432", "");
 //        
 //        System.out.println(h.findAllHotels());
 //    }

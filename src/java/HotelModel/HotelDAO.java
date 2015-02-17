@@ -29,21 +29,16 @@ public class HotelDAO implements HotelDAOInterface{
     }
     
     
-    
+//    
 //    @Override
-//    public Hotel findHotelById(Long hotelId) throws SQLException{
+//    public Hotel findHotelById(int hotelId){
 //        db.openConnection(driver, url, username, password);
 //        
 //        Map r;
 //        
-//        try {
-//            r = db.getRecordById("HOTEL", "HOTEL_ID", hotelId);
-//        } catch (SQLException e1) {
-//            throw new SQLException(e1.getMessage(), e1);
 //
-//        } catch (Exception e2) {
-//            throw new SQLException(e2.getMessage(), e2);
-//        }
+//        r = db.getRecordById("HOTEL", "HOTEL_ID", hotelId);
+//
 //        
 //        Hotel h = new Hotel();
 //        h.setHotelId(new Long(r.get("hotel_id").toString()));

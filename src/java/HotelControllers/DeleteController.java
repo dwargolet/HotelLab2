@@ -1,12 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package HotelControllers;
 
-import HotelModel.Hotel;
-import HotelModel.HotelDAO;
-import HotelModel.HotelService;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.*;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,12 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author dworgolet
+ * @author Daniel
  */
-@WebServlet(name = "HotelController", urlPatterns = {"/hc"})
-public class HotelController extends HttpServlet {
-   private static final String RESULT_PAGE = "/Views/index.jsp";
-   
+@WebServlet(name = "DeleteController", urlPatterns = {"/DeleteController"})
+public class DeleteController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,26 +32,19 @@ public class HotelController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-
-            //HotelService hs = new HotelService();
-            //List<Hotel> hotelList = hs.findAllHotels();
-            
-        
-        HotelDAO dao = new HotelDAO();
-        
-        List<Hotel> records = dao.findAllHotels();
-        
-            request.setAttribute("hotelList", records);
-        
-            
-            RequestDispatcher view =
-                request.getRequestDispatcher(RESULT_PAGE);
-            view.forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DeleteController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DeleteController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
-
-        
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,11 +58,7 @@ public class HotelController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -84,11 +72,7 @@ public class HotelController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        processRequest(request, response);
     }
 
     /**

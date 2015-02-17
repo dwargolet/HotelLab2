@@ -1,5 +1,6 @@
 package HotelModel;
 
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -20,5 +21,7 @@ public abstract int insertRecord(String table, List<String> colNames, List value
 public abstract int updateRecord(String table, String primaryKey, int pk, String colName, Object value);
 
 public abstract int deleteRecord(String table, String primaryKey, int pk);
+
+//public abstract List<Map<String, Object>> getRecordByID(String table, int pk, Object value);
     
 }

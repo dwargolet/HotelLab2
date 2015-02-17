@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface HotelDAOInterface extends DAOInterface {
     
-   // public Hotel findHotelById(Long hotelId) throws SQLException;
+//    public abstract List<Hotel> findHotelById(int hotelId);
     public abstract List<Hotel> findAllHotels();
     public abstract int deleteHotelRecord(int pk);
     public abstract int updateHotelRecord(int pk, String colName, String values);
