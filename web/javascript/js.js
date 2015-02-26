@@ -15,6 +15,9 @@ $(document).ready(function(){
 	    this.value = this.value.replace(/[^0-9\.]/g,'');	    
     });
         
+     
+   
+        
     $('#deleteBtn').click(function () {        
         var hotelId = $("input:radio[name=hotelRadio]:checked").val();
         createRecord.hotelId.value = hotelId;
@@ -23,7 +26,6 @@ $(document).ready(function(){
         $('#createRecord').submit();
         return;
     });
-    
     
     $('#editBtn').click(function () {
         $('#deleteBtn').prop('disabled', true);
@@ -66,7 +68,7 @@ $(document).ready(function(){
 //        createRecord.hotelZip.value = hotelZip;
 //        createRecord.hotelNote.value = hotelNote;
         
-       
+       createBtn.value="Edit Record";
         createRecord.createBtn.value = "Edit Record";
         
         return false;

@@ -4,9 +4,7 @@
     Author     : dworgolet
 --%>
 
-<%--<%@page import="java.util.ArrayList"%>--%>
-<%--<%@page import="HotelModel.Hotel"%>
-<%@page import="java.util.List"%>--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -22,8 +20,18 @@
         
         <title>Hotel Lab 2</title> 
         
+        
+            
+         
     </head>
     <body>
+          <nav id="head" class="navbar navbar-default navbar-fixed-top">
+            <div class="navbar-inner navbar-content-center">
+                <h3>Hotel Lab - <i>Web Version</i></h3>
+            </div>
+        </nav>
+        
+        
         <div class="container">
             <div class="row">           
                 <div class="col-sm-4">               
@@ -42,7 +50,7 @@
                                                     <tr>                                    
                                                         <td align="center">${hotel.hotelId}-</td>
                                                         <td align="center"><input type="hidden" id="listedHotelName" value="${hotel.hotelName}"/>${hotel.hotelName}</td><br>
-                                                        <td align="center"><input type="hidden" id="listedHotelAddress" value="${hotel.streetAddress}"/>${hotel.streetAddress}, </td>
+                                                        <td align="center"><input type="hidden" id="listedHotelAddress" value="${hotel.streetAddress}"/>${hotel.streetAddress},</td>
                                                         <td align="center"><input type="hidden" id="listedHotelCity" value="${hotel.city}"/>${hotel.city},</td>
                                                         <td align="center"><input type="hidden" id="listedHotelState" value="${hotel.state}"/>${hotel.state}</td>
                                                         <td align="center"><input type="hidden" id="listedHotelZip" value="${hotel.zip}"/>${hotel.zip}</td>
@@ -51,53 +59,64 @@
                                                     </tr>
                                                 </tbody>    
                                         </table>               
-                                    </c:forEach> 
-                                                           
+                                    </c:forEach>                                                            
                             </div>
+                    
+                  
+                    <div class="form-group">
+                        <form id="createRecord" name="createRecord"  method="POST" action="<%= request.getContextPath() %>/hc?action=create">
+                            <a name="createForm"></a>
+                            <div class="form-control">
+                                <input type="text" name="hotelId" id="hotelId" placeholder="Hotel ID"/>
+                            </div> 
+                            <div class="form-control">
+                                <input type="text"  id="hotelName" name="hotelName" required="required" placeholder="Hotel Name"/>
+                            </div> 
+                            <div class="form-control">
+                                <input type="text" id="hotelAddress" name="hotelAddress" required="required" placeholder="Address"/>
+                            </div>
+                            <div class="form-control">
+                                <input type="text" id="hotelCity" name="hotelCity" required="required" placeholder="City"/>
+                            </div>
+                            <div class="form-control">
+                                <input type="text" id="hotelState" name="hotelState" min="2" required="required" placeholder="State"/>
+                            </div>
+                            <div class="form-control">
+                                <input type="number" id="hotelZip" name="hotelZip"  class="numReqd" required="required" placeholder="Zip"/>
+                            </div>
+                            <div class="form-control">
+                                <input type="textarea" id="hotelNote" name="hotelNote" placeholder="Notes"/>
+                            </div>           
+<!--                            <input type="button" value="Create Record" id="createBtn"  class="btn btn-primary btn-sm" name="createBtn" >-->
+                        <input type="button" value="Create Record" id="createBtn" class="btn btn-primary btn-sm" name="createBtn" >
+                        </form>
+                            
+                    </div>
+                    
+ 
+                    
 
                 </div>            
-                        
-        
+                          
+<!--        <button class="btn btn-success btn-md" type="submit" id="editBtn"><i>Edit Record</i></button>-->
        
-            <div class="col-lg-6">
-                <div class="form-group">
-                    <form id="createRecord" name="createRecord" class="navbar-form navbar-left" method="POST" action="<%= request.getContextPath() %>/hc?action=create">
-                        <div class="form-control">
-                            <input type="text" name="hotelId" id="hotelId" placeholder="Hotel ID"/>
-                        </div> 
-                        <div class="form-control">
-                            <input type="text"  id="hotelName" name="hotelName" required="required" placeholder="Hotel Name"/>
-                        </div> 
-                        <div class="form-control">
-                            <input type="text" id="hotelAddress" name="hotelAddress" required="required" placeholder="Address"/>
-                        </div>
-                        <div class="form-control">
-                            <input type="text" id="hotelCity" name="hotelCity" required="required" placeholder="City"/>
-                        </div>
-                        <div class="form-control">
-                            <input type="text" id="hotelState" name="hotelState" min="2" required="required" placeholder="State"/>
-                        </div>
-                        <div class="form-control">
-                            <input type="number" id="hotelZip" name="hotelZip"  class="numReqd" required="required" placeholder="Zip"/>
-                        </div>
-                        <div class="form-control">
-                            <input type="textarea" id="hotelNote" name="hotelNote" placeholder="Notes"/>
-                        </div>           
-                        <input type="button" value="Create Record" id="createBtn"  class="btn btn-primary btn-sm" name="createBtn" >
-                        
-                    </form>
-                </div>
-            </div>
+<!--            <div class="col-lg-6">-->
+                
+<!--            </div>-->
        
         </div>
-    <div id="footer" class="container">
-        <nav class="navbar navbar-default navbar-fixed-bottom">
+        </div>           
+                        
+<!--    <div id="footer" class="container">-->
+        <nav id="foot" class="navbar navbar-default navbar-fixed-bottom">
             <div class="navbar-inner navbar-content-center">
-                <button class="btn btn-danger btn-lg" type="submit" id="deleteBtn"><i>Delete Record</i></button>
-                <button class="btn btn-success btn-lg" type="submit" id="editBtn"><i>Edit Record</i></button>
+                <button class="btn btn-danger btn-md" type="submit" id="deleteBtn"><i>Delete Record</i></button>
+                <button class="btn btn-success btn-md" type="submit" id="editBtn"><i>Edit Record</i></button>               
+                <a class="btn btn-primary btn-md" href="#createForm" role="button" id="gotoBtn">Create Record</a>
             </div>
         </nav>
-    </div>
+<!--    </div>-->
+                        
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="<%= request.getContextPath() %>/javascript/js.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>     
