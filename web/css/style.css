@@ -1,0 +1,30 @@
+/*.content {
+    text-align: center;
+    
+}*/
+
+#recordList {
+    float:left; 
+    
+/*    margin:200px;
+    display: inline-block;*/
+}
+
+#createRecord {
+     
+    display: inline-block;
+    clear:right;
+    margin-right: 20px;
+}
+
+/*td {
+    border-right: 5px solid transparent;
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}*/
+
+#footer{
+    clear: both;
+    background-color: #269abc;
+}

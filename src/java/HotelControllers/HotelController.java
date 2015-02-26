@@ -1,5 +1,7 @@
 package HotelControllers;
 
+import HotelModel.DB_Accessor;
+import HotelModel.DB_Mysql;
 import HotelModel.Hotel;
 import HotelModel.HotelDAO;
 import HotelModel.HotelService;
@@ -19,8 +21,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "HotelController", urlPatterns = {"/hc"})
 public class HotelController extends HttpServlet {
-   private static final String RESULT_PAGE = "/Views/index.jsp";
-   
+   private static String RESULT_PAGE = "/Views/index.jsp";  
+   private static final String ACTION_DELETE = "delete";
+   private static final String ACTION_EDIT = "edit";
+   private static final String ACTION_CREATE = "create";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,21 +38,88 @@ public class HotelController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
+        String username = request.getServletContext().getInitParameter("username");
+        String password = request.getServletContext().getInitParameter("password");
+        String url = request.getServletContext().getInitParameter("url");
+        String driver = request.getServletContext().getInitParameter("driver");
+        
+        
+        String name;
+        String address;
+        String city;
+        String state;
+        String zip;
+        String notes;
+                     
+        
+        DB_Accessor db = new DB_Mysql();
+        HotelDAO dao = new HotelDAO(db, url, driver,username, password);
+        RequestDispatcher view;
+        
+        String action = request.getParameter("action");
 
-            //HotelService hs = new HotelService();
-            //List<Hotel> hotelList = hs.findAllHotels();
-            
+        if(request.getParameter("action") != null){
+            if(action.equals(ACTION_CREATE))
+            {
+                
+                name = request.getParameter("hotelName");
+                address = request.getParameter("hotelAddress");
+                city = request.getParameter("hotelCity");
+                zip = request.getParameter("hotelZip");
+                state = request.getParameter("hotelState");
+                notes = request.getParameter("hotelNote");
+                
+                List<String> colNames = new ArrayList<>();
+                List values = new ArrayList();
+                
+                colNames.add("hotel_name");
+                colNames.add("street_address");
+                colNames.add("city");
+                colNames.add("state");
+                colNames.add("postal_code");
+                colNames.add("notes");
+
+                values.add(name);
+                values.add(address);
+                values.add(city);
+                values.add(state);
+                values.add(zip);
+                values.add(notes);
+                
+                dao.insertHotelRecord(colNames, values);
+            }
+        else if(action.equals(ACTION_DELETE))
+            {
+                String stringPk = request.getParameter("hotelId");
+                int pk = Integer.parseInt(stringPk); 
+                dao.deleteHotelRecord(pk);
+            }
+        else if(action.equals(ACTION_EDIT))
+            {
+                String stringPk = request.getParameter("hotelId");
+                int pk = Integer.parseInt(stringPk);
+
+                name = request.getParameter("hotelName");
+                address = request.getParameter("hotelAddress");
+                city = request.getParameter("hotelCity");
+                zip = request.getParameter("hotelZip");
+                state = request.getParameter("hotelState");
+                notes = request.getParameter("hotelNote");
+                
+                dao.updateHotelRecord(pk, "hotel_name", name);
+                dao.updateHotelRecord(pk, "street_address", address);
+                dao.updateHotelRecord(pk, "city", city);
+                dao.updateHotelRecord(pk, "state", state);
+                dao.updateHotelRecord(pk, "postal_code", zip);
+                dao.updateHotelRecord(pk, "notes", notes);     
+            }
+        }
+                List<Hotel> records = dao.findAllHotels();
+                request.setAttribute("hotelList", records);
+                view = request.getRequestDispatcher(RESULT_PAGE);
         
-        HotelDAO dao = new HotelDAO();
-        
-        List<Hotel> records = dao.findAllHotels();
-        
-            request.setAttribute("hotelList", records);
-        
-            
-            RequestDispatcher view =
-                request.getRequestDispatcher(RESULT_PAGE);
-            view.forward(request, response);
+                view.forward(request, response);
+
         }
 
         

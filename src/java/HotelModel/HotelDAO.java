@@ -19,14 +19,16 @@ public class HotelDAO implements HotelDAOInterface{
             
 //    public HotelDAO() {
 //    }
-    
-    public HotelDAO() {
-        db = new DB_Mysql();
-        driver = HotelDBAccessFactory.getDriver();
-        url = HotelDBAccessFactory.getUrl();
-        username = HotelDBAccessFactory.getUsername();
-        password = HotelDBAccessFactory.getPassword();
+
+    public HotelDAO(DB_Accessor db, String url, String driver, String username, String password) {
+        this.db = db;
+        this.url = url;
+        this.driver = driver;
+        this.username = username;
+        this.password = password;
     }
+    
+    
     
     
 //    

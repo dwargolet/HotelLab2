@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>MainController</servlet-name>
+        <servlet-class>HotelControllers.MainController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MainController</servlet-name>
+        <url-pattern>/MainController</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HotelController</servlet-name>
+        <servlet-class>HotelControllers.HotelController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HotelController</servlet-name>
+        <url-pattern>/hc</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DeleteController</servlet-name>
+        <servlet-class>HotelControllers.DeleteController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteController</servlet-name>
+        <url-pattern>/DeleteController</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:mysql://localhost:3306/hotel</param-value>            
+    </context-param>
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>            
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>root</param-value>            
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>admin</param-value>            
+    </context-param>
+    
+    
+    <session-config>
+        <session-timeout>
+            10
+        </session-timeout>
+    </session-config>
+</web-app>

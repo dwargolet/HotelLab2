@@ -11,11 +11,34 @@ import java.util.List;
  */
 public class HotelService {
     
+   // private HotelDAOInterface dao;
     private HotelDAOInterface dao;
+    private DB_Accessor db;
+    private String url;
+    private String driver;
+    private String username;       
+    private String password;
     
-    public HotelService(){
-        dao = new HotelDAO();
+//    public HotelService(){
+//        dao = new HotelDAO(db, url, driver, username, password);
+//    }
+    public HotelService(DB_Accessor db, String url, String driver, String username, String password) {
+        this.db = db;
+        this.url = url;
+        this.driver = driver;
+        this.username = username;
+        this.password = password;
     }
+
+    
+//    public HotelService(HotelDAOInterface dao) {
+//        this.dao = dao;
+//    }
+    
+//    public HotelService(HotelDAOInterface dao) {
+//        this.dao = dao;
+//    }
+    
     
     public void updateHotelRecord(int pk, String field, String value){
         dao.updateHotelRecord(pk, field, value);
@@ -56,6 +79,7 @@ public class HotelService {
     }
     
 //    public static void main(String[] args) {
+//        HotelDAOInterface d = new HotelDAO();
 //        HotelService h = new HotelService();
 //        
 //        h.insertHotelRecord("Wutang", "ODB St", "Shaolin", "NY", "12432", "");

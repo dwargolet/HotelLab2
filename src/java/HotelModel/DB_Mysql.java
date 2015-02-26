@@ -10,7 +10,8 @@ import java.util.*;
 public class DB_Mysql implements DB_Accessor {
    
     private Connection conn;    
-  
+
+    
     
     @Override
     public void openConnection(String driverName, String url, String username, String password)
