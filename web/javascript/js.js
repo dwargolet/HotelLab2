@@ -14,9 +14,7 @@ $(document).ready(function(){
     $('.numReqd').keyup(function () { 
 	    this.value = this.value.replace(/[^0-9\.]/g,'');	    
     });
-        
-     
-   
+ 
         
     $('#deleteBtn').click(function () {        
         var hotelId = $("input:radio[name=hotelRadio]:checked").val();
@@ -27,8 +25,14 @@ $(document).ready(function(){
         return;
     });
     
+   
+    
+    
+    
+    
     $('#editBtn').click(function () {
         $('#deleteBtn').prop('disabled', true);
+              
         
         var hotelId = $("input:radio[name=hotelRadio]:checked").val();
         createRecord.hotelId.value = hotelId;
@@ -50,33 +54,17 @@ $(document).ready(function(){
                     
                 });
                 
-        createRecord.hotelId.value = hotelId;
-//        var hotelName = $("#listedHotelName").val();        
-//        var hotelAddress = $("#listedHotelAddress").val();
-//        var hotelCity = $("#listedHotelCity").val();
-//        var hotelState = $("#listedHotelState").val();
-//        var hotelZip = $("#listedHotelZip").val();
-//        var hotelNote = $("#listedHotelNote").val();
-        
+        createRecord.hotelId.value = hotelId;      
         $('#createRecord').attr('action',  "hc?action=edit");        
-        
-//        createRecord.hotelId.value = hotelId;
-//        createRecord.hotelName.value = hotelName;
-//        createRecord.hotelAddress.value = hotelAddress;
-//        createRecord.hotelCity.value = hotelCity;
-//        createRecord.hotelState.value = hotelState;
-//        createRecord.hotelZip.value = hotelZip;
-//        createRecord.hotelNote.value = hotelNote;
-        
+       
        createBtn.value="Edit Record";
-        createRecord.createBtn.value = "Edit Record";
         
         return false;
     });
     
 
     $('#createBtn').click(function () {  
-        
+        alert($('#hotelName').val());
         $('#editBtn').prop('disabled', false);
         $('#deleteBtn').prop('disabled', false);
         
